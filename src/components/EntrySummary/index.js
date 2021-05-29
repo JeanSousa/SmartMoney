@@ -5,11 +5,11 @@ import EntrySummaryChart from './EntrySummaryChart';
 import EntrySummaryList from './EntrySummaryList';
 
 
-const EntrySummary = () => {
+const EntrySummary = ({entriesGrouped}) => {
     return (
         <View style={styles.container}>
             <EntrySummaryChart/>
-            <EntrySummaryList/>
+            <EntrySummaryList entriesGrouped={entriesGrouped}/>
         </View>
     )
 }
