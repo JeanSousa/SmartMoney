@@ -15,7 +15,6 @@ const Main = ({navigation}) => {
     //informaçao para ser passada como props para componentes filhos
     const currentBalance = 2064.35;
 
-    //() => navigation.navigate('NewEntry')
 
     const save = () => {
       saveEntry();
@@ -44,7 +43,7 @@ const Main = ({navigation}) => {
            <BalancePanel currentBalance={currentBalance}/>
            {/* Uso a props navigation para usar metodo navigate passando Page (rota)  */}
            <Button title='Adicionar' 
-           onPress={save}/>
+           onPress={() => navigation.navigate('NewEntry')}/>
            <EntrySummary entriesGrouped={entriesGrouped}/>
            <EntryList entries={entries} />
        </View>
