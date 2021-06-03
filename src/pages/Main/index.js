@@ -8,7 +8,7 @@ import BalancePanel from '../../components/BalancePanel';
 import EntrySummary from '../../components/EntrySummary';
 import EntryList from '../../components/EntryList';
 
-import {saveEntry} from '../../services/Entries';
+
 
 //meu componente tem mesmo nome do diretorio
 const Main = ({navigation}) => {
@@ -16,9 +16,7 @@ const Main = ({navigation}) => {
     const currentBalance = 2064.35;
 
 
-    const save = () => {
-      saveEntry();
-    }
+    
 
     const entriesGrouped = [
        {key: '1', description: 'Alimentação', amount:201},

@@ -1,6 +1,20 @@
 import {Alert} from 'react-native';
 import {getRealm} from './Realm'; //importo assim com chaves quando não é default
 
+
+export const getEntries = async () => {
+    const realm = await getRealm();
+
+    const entries = realm.objects('Entry');
+
+    console.log('getEntries :: entries', JSON.stringify(entries));
+
+    return entries;
+}
+
+
+
+
 export const saveEntry = async value => { //coloco async porque preciso que o getRealm seja executado
     const realm = await getRealm();
     let  data = {};
