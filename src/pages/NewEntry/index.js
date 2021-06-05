@@ -10,16 +10,25 @@ const NewEntry = ({navigation}) => {
   
     const currentBalance = 2065.35;
 
-    const [amount, setAmount] = useState('0.00');
+
+    //recupera o valor que veio pela navegação, caso seja nulo pega segundo parametro objeto
+    const entry = navigation.getParam('entry', {
+       id: null,
+       amount: '0.00',
+       entryAt: new Date(), 
+    });
+
+
+    const [amount, setAmount] = useState(`${entry.amount}`);
 
     const save = () => {
-      const value = {
+      const data = {
           amount: parseFloat(amount),
       };
       
     
-      console.log('NewEntry :: save ', value);
-      saveEntry(value);
+      console.log('NewEntry :: save ', data);
+      saveEntry(data, entry);
     }
 
 

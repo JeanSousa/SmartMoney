@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { View, Text, Button, FlatList, StyleSheet } from 'react-native'
 
 import EntryListItem from './EntryListItem';
 import {getEntries} from '../../services/Entries';
 
-const EntryList = () => {
+const EntryList = ({navigation}) => {
 
     [entries, setEntries] = useState([]);
 
@@ -26,7 +26,18 @@ const EntryList = () => {
         <Text style={styles.title}>Últimos Lançamentos</Text>
         <FlatList
             data={entries}
-            renderItem={({ item }) => <Text>- {item.description} - ${item.amount}</Text>}
+            renderItem={({ item }) => (
+                <View>
+                    <Text>
+                    - {item.description} - ${item.amount}
+                    </Text>
+                    <Button title={item.id} 
+                    onPress={() => {
+                        navigation.navigate('NewEntry', {entry: item});
+                    }}
+                    />
+                </View>
+            )}
         ></FlatList>
         </View>
     );

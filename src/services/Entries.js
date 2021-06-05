@@ -1,5 +1,6 @@
 import {Alert} from 'react-native';
 import {getRealm} from './Realm'; //importo assim com chaves quando não é default
+import {getUUID} from '../services/UUID';
 
 
 export const getEntries = async () => {
@@ -15,22 +16,22 @@ export const getEntries = async () => {
 
 
 
-export const saveEntry = async value => { //coloco async porque preciso que o getRealm seja executado
+export const saveEntry = async (value, entry ={}) => { //coloco async porque preciso que o getRealm seja executado
     const realm = await getRealm();
     let  data = {};
 
     //aqui eu descontruo o valor, como se fosse value.amount
     //abaixo eu extraio value.amount e salvo dentro da constante amount
-    const {amount} = value;
+   // const {amount} = value;
     
  
     try {
          //abre uma transação para escrita
         realm.write(() => {
             data = {
-            id: 'ABC', 
-            amount: amount,
-            entryAt: new Date(), //vai retornar um objeto tipo date valido (o Realm valida os tipos)
+            id: value.id || entry.id || getUUID(), 
+            amount: value.amount || entry.amount,
+            entryAt: value.entryAt || entry.entryAt,
             isInit: false, //significa se é um campo de inicialização de saldo
             };
         

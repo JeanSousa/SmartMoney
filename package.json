@@ -12,12 +12,14 @@
     "react-native-gesture-handler": "^1.4.1",
     "react-native-reanimated": "^1.2.0",
     "react-navigation": "^4.0.3",
-    "realm": "^10.4.1"
+    "realm": "^10.4.1",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/runtime": "^7.5.0",
     "@react-native-community/eslint-config": "^0.0.3",
+    "@types/uuid": "^8.3.0",
     "babel-jest": "^24.1.0",
     "electron": "12.0.5",
     "jest": "^24.1.0",
