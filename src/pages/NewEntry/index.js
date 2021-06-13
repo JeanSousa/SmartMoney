@@ -5,6 +5,7 @@ import { View,  TextInput , Button, StyleSheet} from 'react-native'
 import BalanceLabel from '../../components/BalanceLabel';
 
 import {saveEntry} from '../../services/Entries';
+import {deleteEntry} from '../../services/Entries';
 
 const NewEntry = ({navigation}) => {
   
@@ -21,14 +22,32 @@ const NewEntry = ({navigation}) => {
 
     const [amount, setAmount] = useState(`${entry.amount}`);
 
-    const save = () => {
+    //função de validação 
+    const isValid = () => {
+      if (parseFloat(amount) !== 0) {
+        return true;
+      } 
+
+      return false;
+    };
+
+    const onSave = () => {
       const data = {
           amount: parseFloat(amount),
       };
       
-    
       console.log('NewEntry :: save ', data);
       saveEntry(data, entry);
+      onClose();
+    };
+
+    const onDelete = () => {
+      deleteEntry(entry); //esse entry vem da navegação
+      onClose();
+    };
+
+    const onClose = () => {
+        navigation.goBack();
     }
 
 
@@ -45,9 +64,12 @@ const NewEntry = ({navigation}) => {
               <Button title="CAMERA"/>
             </View>
             <View>
-              <Button title="Adicionar" onPress={save}/>
-              <Button title="Cancelar"
-               onPress={() => navigation.goBack()}/>
+              <Button title="Adicionar" 
+                onPress={() => {
+                  isValid() && onSave(); //ambos precisam ser true
+                }}/>
+              <Button title="Excluir" onPress={onDelete}/>
+              <Button title="Cancelar"onPress={onClose}/>
             </View>
         </View>
     )

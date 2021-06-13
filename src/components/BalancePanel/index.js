@@ -1,23 +1,48 @@
 import React from 'react'
-import {View, Button, StyleSheet} from 'react-native'
+import {View, TouchableOpacity, Text, StyleSheet} from 'react-native'
+
+import LinearGradient from 'react-native-linear-gradient';
 
 import BalancePanelLabel from './BalancePanelLabel';
 import BalancePanelChart from './BalancePanelChart';
+
+import Colors from '../../styles/Colors';
 
 const BalancePanel = ({currentBalance}) => {
 
     return (
         <View style={styles.container}>
-            <BalancePanelLabel 
-            currentBalance={currentBalance}/>
-            <BalancePanelChart/>
+            <LinearGradient 
+            colors={[Colors.violet, Colors.blue]}
+            style={styles.panel}>
+                <BalancePanelLabel 
+                currentBalance={currentBalance}/>
+                <BalancePanelChart/>
+            </LinearGradient>
+            <TouchableOpacity style={styles.button}>
+                <Text>+</Text>
+            </TouchableOpacity>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-       // flex: 1,
+        
+    },
+    panel: {
+        paddingVertical: 10,
+    },
+    button: {
+        backgroundColor: Colors.green,
+        borderRadius: 50,
+        alignSelf: 'flex-end',
+        alignItems: 'center', //alinhando os filhos do touchable opacity no eixo horizontal
+        justifyContent: 'center',   //alinhando os filhos do touchable opacity no eixo vertical
+        width: 50,
+        height: 50,
+        marginTop: -25,
+        marginRight: 10
     }
 });
 
