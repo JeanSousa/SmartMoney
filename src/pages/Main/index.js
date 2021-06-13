@@ -1,7 +1,7 @@
 import React from 'react';
 
 //importações especificas dos componentes que vou usar visualmente
-import {View, Button, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 
 import BalancePanel from '../../components/BalancePanel';
@@ -13,8 +13,7 @@ import Colors from '../../styles/Colors';
 
 //meu componente tem mesmo nome do diretorio
 const Main = ({navigation}) => {
-    //informaçao para ser passada como props para componentes filhos
-    const currentBalance = 2064.35;
+
 
     const entriesGrouped = [
        {key: '1', description: 'Alimentação', amount:201},
@@ -28,7 +27,7 @@ const Main = ({navigation}) => {
     //função de renderizacao do jsx
     return (
         <View style={styles.container}>
-           <BalancePanel currentBalance={currentBalance}/>
+           <BalancePanel onNewEntryPress={() => navigation.navigate('NewEntry')}/>
            {/* Uso a props navigation para usar metodo navigate passando Page (rota)  */}
            {/* <Button title='Adicionar' 
            onPress={() => navigation.navigate('NewEntry')}/> */}
