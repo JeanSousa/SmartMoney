@@ -25,7 +25,7 @@ const NewEntry = ({navigation}) => {
     //função de validação 
     const isValid = () => {
       if (parseFloat(amount) !== 0) {
-        return true;
+        return true;                
       } 
 
       return false;
